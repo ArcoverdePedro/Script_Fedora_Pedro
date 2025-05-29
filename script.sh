@@ -8,9 +8,9 @@ echo "instalando programas que uso"
 
 sudo dnf copr enable atim/lazygit -y
 
-sudo dnf install -y fd-find wget curl gcc fzf pipx lazygit nvim vim dnf-plugins-core make automake gcc-c++ kernel-devel google-chrome-stable
+sudo dnf install -y fd-find wget curl gcc fzf pipx lazygit nvim vim dnf-plugins-core make automake gcc-c++ kernel-devel google-chrome-stable golang
 curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
-sudo dnf install librewolf
+sudo dnf install -y librewolf
 
 echo "instalando flatpaks"
 flatpak install flathub io.github.shiftey.Desktop
@@ -19,7 +19,7 @@ flatpak install flathub io.dbeaver.DBeaverCommunity
 
 echo "instalando o docker"
 sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo systemctl enable --now docker
 sudo groupadd docker
 sudo usermod -aG docker $USER

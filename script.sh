@@ -8,7 +8,8 @@ echo "instalando programas que uso"
 
 sudo dnf copr enable atim/lazygit -y
 
-sudo dnf install -y fd-find wget curl gcc fzf pipx lazygit nvim vim dnf-plugins-core make automake gcc-c++ kernel-devel google-chrome-stable golang
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install -y fd-find wget curl gcc fzf pipx lazygit nvim vim dnf-plugins-core make automake gcc-c++ kernel-devel google-chrome-stable golang virtualbox
 curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
 sudo dnf install -y librewolf
 
@@ -25,13 +26,12 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 
-
 echo "instalando e configurando Poetry"
 pipx install poetry
 poetry config virtualenvs.in-project true
 
 echo 'Criando o comando "atualizar"'
-sudo tee /usr/local/bin/atualizar > /dev/null << 'EOF'
+sudo tee /usr/local/bin/atualizar >/dev/null <<'EOF'
 #!/bin/bash
 
 set -e
@@ -54,6 +54,3 @@ sudo lazygit --config
 echo "instalando LazyVIM e finalizando script"
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 nvim
-
-
-

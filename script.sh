@@ -9,7 +9,7 @@ echo "instalando programas que uso"
 sudo dnf copr enable atim/lazygit -y
 
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install -y fd-find wget curl gcc fzf pipx lazygit nvim vim dnf-plugins-core make automake gcc-c++ kernel-devel google-chrome-stable golang virtualbox
+sudo dnf install -y fd-find wget curl gcc fzf pipx lazygit nvim vim dnf-plugins-core make automake gcc-c++ kernel-devel google-chrome-stable golang virtualbox python3-tkinter
 curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
 sudo dnf install -y librewolf
 

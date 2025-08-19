@@ -6,15 +6,18 @@ sudo dnf update -y && sudo dnf upgrade -y
 
 echo "instalando programas que uso"
 
-sudo dnf copr enable atim/lazygit -y
 
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install -y fd-find wget curl gcc fzf pipx vim dnf-plugins-core make automake gcc-c++ kernel-devel google-chrome-stable golang virtualbox emacs python3-tkinter
+
+sudo dnf install -y fd-find wget curl gcc fzf pipx vim dnf-plugins-core \
+	 make automake gcc gcc-c++ kernel-devel google-chrome-stable golang virtualbox emacs \
+	 python3-tkinter swaylock swayidle waybar wlroots foot wofi mako \
+	 akmod-nvidia xorg-x11-drv-nvidia-cudamesa-vulkan-drivers mesa-dri-drivers \
+	 podman podman-compose 
+
 curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
 sudo dnf install -y librewolf
 
-git clone --depth 1 --single-branch https://github.com/doomemacs/doomemacs ~/.config/emacs
-~/.config/emacs/bin/doom install
 
 echo "instalando flatpaks"
 flatpak install flathub io.github.shiftey.Desktop
@@ -29,9 +32,8 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 
-echo "instalando e configurando Poetry"
-pipx install poetry
-poetry config virtualenvs.in-project true
+echo "instalando e configurando UV Python"
+pipx install uv
 
 echo 'Criando o comando "atualizar"'
 sudo tee /usr/local/bin/atualizar >/dev/null <<'EOF'
@@ -52,6 +54,6 @@ echo -e "Removendo pacotes não utilizados..."
 sudo dnf autoremove -y
 EOF
 
-
+echo 'Configurando Emacs'
 
 
